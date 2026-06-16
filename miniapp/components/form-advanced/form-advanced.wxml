@@ -1,0 +1,104 @@
+<!-- 深度筛查表单 (16 字段) — 统一2列布局 -->
+<form bindsubmit="handleSubmit">
+  <view class="section-heading">
+    <view class="section-dot"></view>
+    <text>基本信息</text>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">年龄 <text class="unit">岁</text></view>
+      <input class="form-input" type="digit" value="{{age}}" placeholder="45" placeholder-class="input-placeholder" bindinput="onAgeInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">性别</view>
+      <picker mode="selector" range="{{genderOptions}}" value="{{genderIndex}}" bindchange="onGenderChange">
+        <view class="picker-display">
+          <text class="picker-text">{{genderOptions[genderIndex]}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class="section-heading">
+    <view class="section-dot"></view>
+    <text>核心指标</text>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">糖化血红蛋白 <text class="unit">HbA1c (%)</text></view>
+      <input class="form-input" type="digit" value="{{hba1c}}" placeholder="5.5" placeholder-class="input-placeholder" bindinput="onHbA1cInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">空腹血糖 <text class="unit">mmol/L</text></view>
+      <input class="form-input" type="digit" value="{{fastingGlucose}}" placeholder="5.5" placeholder-class="input-placeholder" bindinput="onGlucoseInput" />
+    </view>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">身高 <text class="unit">cm</text></view>
+      <input class="form-input" type="digit" value="{{height}}" placeholder="170" placeholder-class="input-placeholder" bindinput="onHeightInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">体重 <text class="unit">kg</text></view>
+      <input class="form-input" type="digit" value="{{weight}}" placeholder="70" placeholder-class="input-placeholder" bindinput="onWeightInput" />
+    </view>
+  </view>
+
+  <view class="section-heading">
+    <view class="section-dot"></view>
+    <text>进阶指标</text>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">胰岛素抵抗指数 <text class="unit">HOMA-IR</text></view>
+      <input class="form-input" type="digit" value="{{homaIr}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onHomaIrInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">肾小球滤过率 <text class="unit">eGFR</text></view>
+      <input class="form-input" type="digit" value="{{egfr}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onEgfrInput" />
+    </view>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">尿白蛋白/肌酐比 <text class="unit">mg/g</text></view>
+      <input class="form-input" type="digit" value="{{urdact}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onUrdactInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">收缩压 <text class="unit">mmHg</text></view>
+      <input class="form-input" type="digit" value="{{bpSys}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onBpSysInput" />
+    </view>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">舒张压 <text class="unit">mmHg</text></view>
+      <input class="form-input" type="digit" value="{{bpDia}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onBpDiaInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">维生素 D3 <text class="unit">nmol/L</text></view>
+      <input class="form-input" type="digit" value="{{vitD3}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onVitD3Input" />
+    </view>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">甘油三酯 <text class="unit">mg/dL</text></view>
+      <input class="form-input" type="digit" value="{{triglyc}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onTriglycInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">谷氨酰转肽酶 <text class="unit">GGT (U/L)</text></view>
+      <input class="form-input" type="digit" value="{{ggt}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onGgtInput" />
+    </view>
+  </view>
+  <view class="form-row">
+    <view class="form-group">
+      <view class="form-label">尿酸 <text class="unit">mg/dL</text></view>
+      <input class="form-input" type="digit" value="{{uricAcid}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onUricAcidInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">谷丙转氨酶 <text class="unit">ALT (U/L)</text></view>
+      <input class="form-input" type="digit" value="{{alt}}" placeholder="可选" placeholder-class="input-placeholder" bindinput="onAltInput" />
+    </view>
+  </view>
+
+  <button class="btn-primary" form-type="submit">开始深度筛查评估</button>
+</form>

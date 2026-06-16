@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>糖尿病风险筛查工具</title>
+    <link rel="stylesheet" href="/static/style.css?v=2">
+</head>
+<body>
+    <div class="container">
+
+        <!-- ====== Header ====== -->
+        <header>
+            <div class="header-icon">🩺</div>
+            <div class="header-badge">AI 辅助筛查 · 深度学习模型</div>
+            <h1>糖尿病风险<span class="accent">筛查评估</span></h1>
+            <p>基于 NHANES 2017–2020 临床数据 · 输入体检指标，获取个性化风险评估报告</p>
+        </header>
+
+        <!-- ====== Main Card ====== -->
+        <div class="main-card">
+
+            <!-- Tab Navigation -->
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="tab-basic">
+                    <span class="tab-icon">📋</span>基础筛查
+                </button>
+                <button class="tab-btn" data-tab="tab-advanced">
+                    <span class="tab-icon">🔬</span>深度筛查
+                </button>
+                <button class="tab-btn" data-tab="tab-help">
+                    <span class="tab-icon">📖</span>使用说明
+                </button>
+            </nav>
+
+            <!-- Tab Body -->
+            <div class="tab-body">
+
+                <!-- ====== Tab: 基础筛查 (6项) ====== -->
+                <div id="tab-basic" class="tab-content active">
+                    <form id="form-basic" class="prediction-form">
+
+                        <div class="section-heading">
+                            <span class="dot"></span>基本信息
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basic-age">年龄 <span class="unit">岁</span></label>
+                                <input type="number" id="basic-age" name="age" value="45" min="8" max="80" step="1">
+                            </div>
+                            <div class="form-group">
+                                <label>性别</label>
+                                <div class="radio-group">
+                                    <label class="radio-label"><input type="radio" name="gender" value="男性" checked> 男性</label>
+                                    <label class="radio-label"><input type="radio" name="gender" value="女性"> 女性</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="basic-race">种族/民族</label>
+                                <select id="basic-race" name="race">
+                                    <option value="非西班牙裔白人" selected>非西班牙裔白人</option>
+                                    <option value="墨西哥裔美国人">墨西哥裔美国人</option>
+                                    <option value="其他西班牙裔">其他西班牙裔</option>
+                                    <option value="非西班牙裔黑人">非西班牙裔黑人</option>
+                                    <option value="非西班牙裔亚裔">非西班牙裔亚裔</option>
+                                    <option value="其他/多种族">其他/多种族</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="section-heading">
+                            <span class="dot"></span>体检指标
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="basic-hba1c">糖化血红蛋白 <span class="unit">HbA1c (%)</span></label>
+                                <input type="number" id="basic-hba1c" name="hba1c" value="5.5" min="3.0" max="18.0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="basic-fpg">空腹血糖 <span class="unit">mmol/L</span></label>
+                                <input type="number" id="basic-fpg" name="fasting_glucose" value="5.5" min="2.5" max="30.0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="basic-bmi">身体质量指数 <span class="unit">BMI (kg/m²)</span></label>
+                                <input type="number" id="basic-bmi" name="bmi" value="25.0" min="12.0" max="65.0" step="0.1">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">开始筛查评估</button>
+                    </form>
+
+                    <div id="result-basic" class="result-area hidden"></div>
+
+                    <div class="hint">
+                        💡 如需更全面的评估（胰岛素抵抗、肾功能、血脂、肝酶等 10 项进阶指标），
+                        请切换到 <strong>深度筛查</strong> 模式。
+                    </div>
+                </div>
+
+                <!-- ====== Tab: 深度筛查 (16项) ====== -->
+                <div id="tab-advanced" class="tab-content">
+                    <form id="form-advanced" class="prediction-form">
+
+                        <div class="section-heading">
+                            <span class="dot"></span>基本信息
+                            <span class="section-heading-sub">必填</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-age">年龄 <span class="unit">岁</span></label>
+                                <input type="number" id="adv-age" name="age" value="45" min="8" max="80" step="1">
+                            </div>
+                            <div class="form-group">
+                                <label>性别</label>
+                                <div class="radio-group">
+                                    <label class="radio-label"><input type="radio" name="gender_adv" value="男性" checked> 男性</label>
+                                    <label class="radio-label"><input type="radio" name="gender_adv" value="女性"> 女性</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-race">种族/民族</label>
+                                <select id="adv-race" name="race">
+                                    <option value="非西班牙裔白人" selected>非西班牙裔白人</option>
+                                    <option value="墨西哥裔美国人">墨西哥裔美国人</option>
+                                    <option value="其他西班牙裔">其他西班牙裔</option>
+                                    <option value="非西班牙裔黑人">非西班牙裔黑人</option>
+                                    <option value="非西班牙裔亚裔">非西班牙裔亚裔</option>
+                                    <option value="其他/多种族">其他/多种族</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="section-heading">
+                            <span class="dot"></span>核心指标
+                            <span class="section-heading-sub">推荐填写</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-hba1c">糖化血红蛋白 <span class="unit">HbA1c (%)</span></label>
+                                <input type="number" id="adv-hba1c" name="hba1c" value="5.5" min="3.0" max="18.0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-fpg">空腹血糖 <span class="unit">mmol/L</span></label>
+                                <input type="number" id="adv-fpg" name="fasting_glucose" value="5.5" min="2.5" max="30.0" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-bmi">身体质量指数 <span class="unit">BMI (kg/m²)</span></label>
+                                <input type="number" id="adv-bmi" name="bmi" value="25.0" min="12.0" max="65.0" step="0.1">
+                            </div>
+                        </div>
+
+                        <div class="section-heading">
+                            <span class="dot"></span>进阶指标
+                            <span class="section-heading-sub">留空使用参考值</span>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-homa_ir">胰岛素抵抗指数 <span class="unit">HOMA-IR</span></label>
+                                <input type="number" id="adv-homa_ir" name="homa_ir" min="0.0" max="50.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-egfr">肾小球滤过率 <span class="unit">eGFR (mL/min/1.73m²)</span></label>
+                                <input type="number" id="adv-egfr" name="egfr" min="10.0" max="200.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-urdact">尿白蛋白/肌酐比 <span class="unit">mg/g</span></label>
+                                <input type="number" id="adv-urdact" name="urdact" min="0.0" max="5000.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-bp_sys">收缩压 <span class="unit">mmHg</span></label>
+                                <input type="number" id="adv-bp_sys" name="bp_sys" min="70.0" max="250.0" step="1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-bp_dia">舒张压 <span class="unit">mmHg</span></label>
+                                <input type="number" id="adv-bp_dia" name="bp_dia" min="30.0" max="150.0" step="1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-vit_d3">维生素 D3 <span class="unit">nmol/L</span></label>
+                                <input type="number" id="adv-vit_d3" name="vit_d3" min="3.0" max="500.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-triglyc">甘油三酯 <span class="unit">mg/dL</span></label>
+                                <input type="number" id="adv-triglyc" name="triglyc" min="20.0" max="2000.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-ggt">谷氨酰转肽酶 <span class="unit">GGT (U/L)</span></label>
+                                <input type="number" id="adv-ggt" name="ggt" min="2.0" max="2000.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="adv-uric_acid">尿酸 <span class="unit">mg/dL</span></label>
+                                <input type="number" id="adv-uric_acid" name="uric_acid" min="1.0" max="15.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-alt">谷丙转氨酶 <span class="unit">ALT (U/L)</span></label>
+                                <input type="number" id="adv-alt" name="alt" min="3.0" max="500.0" step="0.1" placeholder="留空使用参考值">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">开始深度筛查评估</button>
+                    </form>
+
+                    <div id="result-advanced" class="result-area hidden"></div>
+
+                    <div class="hint hint-advanced">
+                        📌 <strong>进阶指标说明</strong>
+                        <ul>
+                            <li><strong>HOMA-IR</strong> — 胰岛素抵抗指数 = 空腹胰岛素 × 空腹血糖 ÷ 22.5</li>
+                            <li><strong>eGFR</strong> — 估算肾小球滤过率，通常 &gt;90 为正常</li>
+                            <li><strong>尿白蛋白/肌酐比</strong> — 肾脏早期损伤标志，&lt;30 为正常</li>
+                            <li>留空的项目将自动使用健康人群参考值进行填补</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ====== Tab: 使用说明 ====== -->
+                <div id="tab-help" class="tab-content">
+                    <div class="help-section">
+                        <h2>使用说明</h2>
+
+                        <h3>📋 基础筛查（6 项）</h3>
+                        <p>适用于仅有常规体检报告的用户：</p>
+                        <ol>
+                            <li><strong>年龄、性别、种族</strong> — 基础人口学信息</li>
+                            <li><strong>HbA1c（糖化血红蛋白）</strong> — 反映近 2–3 个月平均血糖水平</li>
+                            <li><strong>空腹血糖</strong> — 需空腹 8 小时以上采血</li>
+                            <li><strong>BMI</strong> — 体重 (kg) ÷ 身高² (m²)</li>
+                        </ol>
+
+                        <h3>🔬 深度筛查（16 项）</h3>
+                        <p>在基础筛查之上，额外引入 10 项临床指标：</p>
+                        <ul>
+                            <li><strong>肾功能</strong> — eGFR、尿白蛋白/肌酐比</li>
+                            <li><strong>胰岛素抵抗</strong> — HOMA-IR（需空腹胰岛素）</li>
+                            <li><strong>心血管</strong> — 收缩压 / 舒张压</li>
+                            <li><strong>代谢 &amp; 肝脏</strong> — 甘油三酯、GGT、ALT、尿酸</li>
+                            <li><strong>维生素 D3</strong> — 与胰岛素敏感性相关</li>
+                        </ul>
+
+                        <h3>📊 结果解读</h3>
+                        <table class="result-table">
+                            <thead>
+                                <tr><th>风险等级</th><th>概率范围</th><th>临床建议</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>🟢 低风险</td><td>&lt; 5%</td><td>保持健康生活方式，定期体检</td></tr>
+                                <tr><td>🟡 中等风险</td><td>5% ~ 阈值</td><td>关注血糖变化，定期复查</td></tr>
+                                <tr><td>🟠 较高风险</td><td>阈值 ~ 50%</td><td>建议进行 OGTT 确诊试验</td></tr>
+                                <tr><td>🔴 高风险</td><td>50% ~ 80%</td><td>尽快就医，全面筛查</td></tr>
+                                <tr><td>⛔ 极高风险</td><td>&gt; 80%</td><td>立即就医，全面检查</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div class="disclaimer">
+                            ⚠️ <strong>免责声明</strong>：本工具仅供健康风险筛查参考，<strong>不构成医疗诊断</strong>。
+                            如有任何健康疑虑，请务必咨询专业医生。
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /tab-body -->
+        </div><!-- /main-card -->
+
+        <!-- ====== Footer ====== -->
+        <footer>
+            NHANES 2017–2020<span class="dot-separator"></span>深度学习 MLP (46K)<span class="dot-separator"></span>仅供筛查参考
+        </footer>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="spinner"></div>
+        <p>正在分析您的健康数据...</p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- 筛查结果卡片 -->
+<view class="result-card" wx:if="{{result}}">
+  <view class="result-title">筛查评估报告</view>
+
+  <view class="result-body" style="background: {{bgColor}}; border-color: {{result.risk_color}};">
+    <!-- 风险等级 + 图标 -->
+    <view class="risk-level" style="color: {{result.risk_color}};">
+      <text>{{levelIcon}} {{result.risk_level}}</text>
+    </view>
+
+    <!-- 概率数字 -->
+    <view class="prob-number" style="color: {{result.risk_color}};">
+      {{result.risk_probability}}%
+    </view>
+    <view class="prob-label">糖尿病风险概率</view>
+
+    <!-- 进度条 -->
+    <view class="bar-bg">
+      <view class="bar-fill" style="width: {{barWidth}}%; background: {{result.risk_color}};"></view>
+    </view>
+
+    <!-- 建议文本 -->
+    <view class="advice">{{result.advice}}</view>
+
+    <!-- 分隔线 + 元信息 -->
+    <view class="meta-line"></view>
+    <view class="meta-info">
+      <text>模型 AUC: {{result.model_auc}}</text>
+      <text> | 筛查阈值: {{result.threshold_pct}}%</text>
+      <text> | {{result.data_source}}</text>
+    </view>
+    <view class="disclaimer">
+      ⚠ 本工具仅供筛查参考，不构成医疗诊断。请咨询专业医生。
+    </view>
+  </view>
+</view>

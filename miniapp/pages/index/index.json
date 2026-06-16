@@ -1,0 +1,15 @@
+{
+  "usingComponents": {
+    "form-basic": "/components/form-basic/form-basic",
+    "form-advanced": "/components/form-advanced/form-advanced",
+    "result-card": "/components/result-card/result-card",
+    "help-panel": "/components/help-panel/help-panel"
+  },
+  "componentPlaceholder": {
+    "form-basic": "view",
+    "form-advanced": "view",
+    "result-card": "view",
+    "help-panel": "view"
+  },
+  "navigationBarTitleText": "糖尿病风险筛查"
+}

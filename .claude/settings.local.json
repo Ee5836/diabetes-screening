@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(timeout 20 python -m app.main)",
+      "Bash(python -m app.main)",
+      "Bash(curl -s -X POST http://127.0.0.1:7861/api/predict/basic -H 'Content-Type: application/json' -d '{\"age\":45,\"gender\":\"男性\",\"race\":\"非西班牙裔白人\",\"hba1c\":5.5,\"fasting_glucose\":5.5,\"bmi\":25.0}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d['result_html'][:200]\\)\")",
+      "Bash(kill %1)",
+      "Bash(python -c ' *)",
+      "Bash(cmd.exe *)",
+      "Bash(curl -s http://127.0.0.1:7861/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:7861/static/style.css)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:7861/static/script.js)",
+      "Bash(curl *)",
+      "Bash(kill %%)"
+    ]
+  }
+}

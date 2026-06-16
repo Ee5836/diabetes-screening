@@ -1,0 +1,110 @@
+/* ============================================================
+   使用说明面板样式
+   ============================================================ */
+
+.help-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 32rpx;
+  color: var(--color-text);
+}
+
+.help-h3 {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin: 36rpx 0 16rpx;
+  color: var(--color-text);
+}
+
+.help-text {
+  margin-left: 4rpx;
+  margin-bottom: 14rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+  font-size: 28rpx;
+}
+
+.help-list {
+  margin-left: 4rpx;
+  margin-bottom: 14rpx;
+}
+
+.help-item {
+  margin-bottom: 10rpx;
+  font-size: 26rpx;
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+
+.help-strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ---- Risk Table (用 flex 模拟) ---- */
+.risk-table {
+  margin: 20rpx 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1rpx solid var(--color-border-light);
+}
+
+.table-header {
+  display: flex;
+  background: #FAF8F5;
+  font-weight: 700;
+  font-size: 22rpx;
+  color: var(--color-text);
+  border-bottom: 1rpx solid var(--color-border);
+}
+
+.table-row {
+  display: flex;
+  border-bottom: 1rpx solid var(--color-border-light);
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+.table-cell {
+  padding: 18rpx 12rpx;
+  font-size: 22rpx;
+  color: var(--color-text-secondary);
+}
+
+.cell-wide {
+  flex: 3;
+}
+
+.cell-mid {
+  flex: 2;
+  text-align: center;
+}
+
+/* ---- Disclaimer ---- */
+.disclaimer {
+  background: #FDF8EE;
+  border-left: 4rpx solid var(--color-warning);
+  border-radius: var(--radius-md);
+  padding: 22rpx 28rpx;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #8B7355;
+  line-height: 1.75;
+}
+
+.disclaimer-title {
+  font-weight: 700;
+  font-size: 26rpx;
+  color: #7B6345;
+  margin-bottom: 14rpx;
+}
+
+.disclaimer-item {
+  margin-bottom: 8rpx;
+}
+
+.disclaimer-item:last-child {
+  margin-bottom: 0;
+}

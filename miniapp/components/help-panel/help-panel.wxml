@@ -1,0 +1,49 @@
+<!-- 使用说明 -->
+<view class="help-section">
+    <view class="help-title">使用说明</view>
+
+    <!-- 基础筛查 -->
+    <view class="help-h3">📋 基础筛查（6 项）</view>
+    <view class="help-text">适用于仅有常规体检报告的用户：</view>
+    <view class="help-list">
+      <view class="help-item">1. <text class="help-strong">年龄、性别、种族</text> — 基础人口学信息</view>
+      <view class="help-item">2. <text class="help-strong">HbA1c（糖化血红蛋白）</text> — 反映近 2–3 个月平均血糖水平</view>
+      <view class="help-item">3. <text class="help-strong">空腹血糖</text> — 需空腹 8 小时以上采血</view>
+      <view class="help-item">4. <text class="help-strong">BMI</text> — 体重 (kg) ÷ 身高² (m²)</view>
+    </view>
+
+    <!-- 深度筛查 -->
+    <view class="help-h3">🔬 深度筛查（16 项）</view>
+    <view class="help-text">在基础筛查之上，额外引入 10 项临床指标：</view>
+    <view class="help-list">
+      <view class="help-item">• <text class="help-strong">肾功能</text> — eGFR、尿白蛋白/肌酐比</view>
+      <view class="help-item">• <text class="help-strong">胰岛素抵抗</text> — HOMA-IR（需空腹胰岛素）</view>
+      <view class="help-item">• <text class="help-strong">心血管</text> — 收缩压 / 舒张压</view>
+      <view class="help-item">• <text class="help-strong">代谢 & 肝脏</text> — 甘油三酯、GGT、ALT、尿酸</view>
+      <view class="help-item">• <text class="help-strong">维生素 D3</text> — 与胰岛素敏感性相关</view>
+    </view>
+
+    <!-- 结果解读 -->
+    <view class="help-h3">📊 结果解读</view>
+    <view class="risk-table">
+      <view class="table-header">
+        <view class="table-cell cell-wide">风险等级</view>
+        <view class="table-cell cell-mid">概率范围</view>
+        <view class="table-cell cell-wide">临床建议</view>
+      </view>
+      <view class="table-row" wx:for="{{riskTable}}" wx:key="level">
+        <view class="table-cell cell-wide">{{item.level}}</view>
+        <view class="table-cell cell-mid">{{item.range}}</view>
+        <view class="table-cell cell-wide">{{item.advice}}</view>
+      </view>
+    </view>
+
+    <!-- 免责声明 -->
+    <view class="disclaimer">
+      <view class="disclaimer-title">免责声明</view>
+      <view class="disclaimer-item">1. 本工具基于深度学习算法模型，依据用户输入的体检指标提供糖尿病风险评估，<text class="help-strong">仅供健康参考，不构成任何形式的医疗诊断、处方或治疗建议</text>。</view>
+      <view class="disclaimer-item">2. 筛查结果可能受到输入数据准确性、个体差异及模型局限性等因素影响，<text class="help-strong">不应作为临床决策的唯一依据</text>。</view>
+      <view class="disclaimer-item">3. 如有糖尿病相关症状或健康疑虑，<text class="help-strong">请及时前往正规医疗机构就诊</text>，由专业医生结合临床检查进行综合诊断。</view>
+      <view class="disclaimer-item">4. 本工具开发者不承担因使用本筛查结果而导致的任何直接或间接责任。用户使用本工具即视为已阅读并同意本声明。</view>
+    </view>
+  </view>

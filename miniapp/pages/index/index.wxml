@@ -1,0 +1,88 @@
+<!-- 糖尿病自测 — 主页面 -->
+<view class="page">
+  <!-- ====== Header ====== -->
+  <view class="header">
+    <view class="header-title">糖尿病<text class="accent">自测</text></view>
+    <view class="header-desc">基于 NHANES 2020–2023 临床数据</view>
+  </view>
+
+  <!-- ====== Main Card ====== -->
+  <view class="card">
+    <!-- Tab Navigation -->
+    <view class="tab-nav">
+      <view
+        wx:for="{{tabs}}"
+        wx:key="id"
+        class="tab-btn {{activeTab === item.id ? 'tab-btn-active' : ''}}"
+        data-tab="{{item.id}}"
+        bindtap="switchTab"
+      >
+        <text>{{item.icon}} {{item.label}}</text>
+      </view>
+    </view>
+
+    <!-- Tab Content -->
+    <view class="tab-body">
+      <view class="random-fill" wx:if="{{activeTab !== 'help'}}" bindtap="randomFill">
+        <text>🎲 随机填充示例数据</text>
+      </view>
+      <form-basic id="formBasic" wx:if="{{activeTab === 'basic'}}" bindsubmit="onBasicSubmit" />
+      <form-advanced id="formAdvanced" wx:if="{{activeTab === 'advanced'}}" bindsubmit="onAdvancedSubmit" />
+      <help-panel wx:if="{{activeTab === 'help'}}" />
+
+      <view id="result-anchor" wx:if="{{showResult}}">
+        <result-card result="{{resultData}}" />
+      </view>
+    </view>
+  </view>
+
+  <!-- ====== Loading Overlay ====== -->
+  <view class="loading-overlay" wx:if="{{loading}}">
+    <view class="loading-spinner"></view>
+    <view class="loading-text">正在分析您的健康数据...</view>
+  </view>
+
+  <!-- ====== Footer ====== -->
+  <view class="footer">
+    NHANES 2017–2020 · 深度学习 MLP (46K) · 仅供筛查参考
+  </view>
+</view>
+
+<!-- ====== 免责声明弹窗 ====== -->
+<view class="disclaimer-overlay" wx:if="{{showDisclaimer}}">
+  <view class="disclaimer-modal">
+    <view class="disclaimer-modal-title">免责声明</view>
+
+    <view class="disclaimer-modal-body">
+      <view class="disclaimer-modal-text">
+        1. 本工具基于深度学习算法模型，依据用户输入的体检指标提供糖尿病风险评估，<text class="disclaimer-strong">仅供健康参考，不构成任何形式的医疗诊断、处方或治疗建议</text>。
+      </view>
+      <view class="disclaimer-modal-text">
+        2. 筛查结果可能受到输入数据准确性、个体差异及模型局限性等因素影响，<text class="disclaimer-strong">不应作为临床决策的唯一依据</text>。
+      </view>
+      <view class="disclaimer-modal-text">
+        3. 如有糖尿病相关症状或健康疑虑，<text class="disclaimer-strong">请及时前往正规医疗机构就诊</text>，由专业医生结合临床检查进行综合诊断。
+      </view>
+      <view class="disclaimer-modal-text">
+        4. 本工具开发者不承担因使用本筛查结果而导致的任何直接或间接责任。用户使用本工具即视为已阅读并同意本声明。
+      </view>
+    </view>
+
+    <view class="disclaimer-modal-footer">
+      <view class="disclaimer-check" bindtap="toggleAgree">
+        <view class="check-box {{agreed ? 'check-box-on' : ''}}">
+          <text wx:if="{{agreed}}" class="check-mark">✓</text>
+        </view>
+        <text class="check-label">我已阅读并同意上述免责声明</text>
+      </view>
+
+      <view class="countdown-hint" wx:if="{{!canProceed}}">阅读倒计时 {{countdownSec}} 秒</view>
+
+      <button
+        class="disclaimer-btn {{canProceed ? 'disclaimer-btn-active' : ''}}"
+        disabled="{{!canProceed}}"
+        bindtap="dismissDisclaimer"
+      >{{btnText}}</button>
+    </view>
+  </view>
+</view>
