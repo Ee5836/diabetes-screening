@@ -51,7 +51,7 @@ warnings.filterwarnings("ignore")
 # =====================================================================
 CONFIG = {
     # ---- 路径 ----
-    "data_path":       "./output/nhanes_diabetes_2017_2020_v2.csv",
+    "data_path":       "./output/nhanes_diabetes_2020_2023_v2.csv",
     "output_figures":  "./output/figures",
     "output_models":   "./output/models",
     "random_seed":     42,

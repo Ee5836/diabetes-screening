@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>糖尿病风险筛查工具</title>
-    <link rel="stylesheet" href="/static/style.css?v=2">
+    <link rel="stylesheet" href="/static/style.css?v=3">
 </head>
 <body>
     <div class="container">
@@ -80,12 +80,23 @@
                                 <label for="basic-fpg">空腹血糖 <span class="unit">mmol/L</span></label>
                                 <input type="number" id="basic-fpg" name="fasting_glucose" value="5.5" min="2.5" max="30.0" step="0.1">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="basic-bmi">身体质量指数 <span class="unit">BMI (kg/m²)</span></label>
-                                <input type="number" id="basic-bmi" name="bmi" value="25.0" min="12.0" max="65.0" step="0.1">
+                                <label for="basic-height">身高 <span class="unit">cm</span></label>
+                                <input type="number" id="basic-height" value="170" min="100" max="250" step="1" placeholder="170">
+                            </div>
+                            <div class="form-group">
+                                <label for="basic-weight">体重 <span class="unit">kg</span></label>
+                                <input type="number" id="basic-weight" value="70" min="30" max="200" step="0.1" placeholder="70">
                             </div>
                         </div>
+                        <div class="bmi-calc-row">
+                            <span id="basic-bmi-display" class="bmi-calc">BMI: 24.2 kg/m²</span>
+                        </div>
+                        <input type="hidden" id="basic-bmi-hidden" name="bmi" value="">
 
+                        <button type="button" id="random-fill-basic" class="random-fill-btn">🎲 随机填充示例数据</button>
                         <button type="submit" class="btn-primary">开始筛查评估</button>
                     </form>
 
@@ -143,11 +154,21 @@
                                 <label for="adv-fpg">空腹血糖 <span class="unit">mmol/L</span></label>
                                 <input type="number" id="adv-fpg" name="fasting_glucose" value="5.5" min="2.5" max="30.0" step="0.1">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
-                                <label for="adv-bmi">身体质量指数 <span class="unit">BMI (kg/m²)</span></label>
-                                <input type="number" id="adv-bmi" name="bmi" value="25.0" min="12.0" max="65.0" step="0.1">
+                                <label for="adv-height">身高 <span class="unit">cm</span></label>
+                                <input type="number" id="adv-height" value="170" min="100" max="250" step="1" placeholder="170">
+                            </div>
+                            <div class="form-group">
+                                <label for="adv-weight">体重 <span class="unit">kg</span></label>
+                                <input type="number" id="adv-weight" value="70" min="30" max="200" step="0.1" placeholder="70">
                             </div>
                         </div>
+                        <div class="bmi-calc-row">
+                            <span id="advanced-bmi-display" class="bmi-calc">BMI: 24.2 kg/m²</span>
+                        </div>
+                        <input type="hidden" id="advanced-bmi-hidden" name="bmi" value="">
 
                         <div class="section-heading">
                             <span class="dot"></span>进阶指标
@@ -202,6 +223,7 @@
                             </div>
                         </div>
 
+                        <button type="button" id="random-fill-advanced" class="random-fill-btn">🎲 随机填充示例数据</button>
                         <button type="submit" class="btn-primary">开始深度筛查评估</button>
                     </form>
 
@@ -229,7 +251,7 @@
                             <li><strong>年龄、性别、种族</strong> — 基础人口学信息</li>
                             <li><strong>HbA1c（糖化血红蛋白）</strong> — 反映近 2–3 个月平均血糖水平</li>
                             <li><strong>空腹血糖</strong> — 需空腹 8 小时以上采血</li>
-                            <li><strong>BMI</strong> — 体重 (kg) ÷ 身高² (m²)</li>
+                            <li><strong>BMI</strong> — 根据身高和体重自动计算</li>
                         </ol>
 
                         <h3>🔬 深度筛查（16 项）</h3>
@@ -276,6 +298,43 @@
     <div id="loading-overlay" class="loading-overlay hidden">
         <div class="spinner"></div>
         <p>正在分析您的健康数据...</p>
+    </div>
+
+    <!-- ====== 免责声明弹窗 (对齐小程序端) ====== -->
+    <div id="disclaimer-overlay" class="disclaimer-overlay">
+        <div class="disclaimer-modal">
+            <div class="disclaimer-modal-title">免责声明</div>
+
+            <div class="disclaimer-modal-body">
+                <div class="disclaimer-modal-text">
+                    1. 本工具基于深度学习算法模型，依据用户输入的体检指标提供糖尿病风险评估，<span class="disclaimer-strong">仅供健康参考，不构成任何形式的医疗诊断、处方或治疗建议</span>。
+                </div>
+                <div class="disclaimer-modal-text">
+                    2. 筛查结果可能受到输入数据准确性、个体差异及模型局限性等因素影响，<span class="disclaimer-strong">不应作为临床决策的唯一依据</span>。
+                </div>
+                <div class="disclaimer-modal-text">
+                    3. 如有糖尿病相关症状或健康疑虑，<span class="disclaimer-strong">请及时前往正规医疗机构就诊</span>，由专业医生结合临床检查进行综合诊断。
+                </div>
+                <div class="disclaimer-modal-text">
+                    4. 本工具开发者不承担因使用本筛查结果而导致的任何直接或间接责任。用户使用本工具即视为已阅读并同意本声明。
+                </div>
+            </div>
+
+            <div class="disclaimer-modal-footer">
+                <div class="disclaimer-check" onclick="_toggleAgree()">
+                    <div id="check-box" class="check-box">
+                        <!-- JS 动态填充 ✓ -->
+                    </div>
+                    <span class="check-label">我已阅读并同意上述免责声明</span>
+                </div>
+
+                <div id="countdown-hint" class="countdown-hint">阅读倒计时 10 秒</div>
+
+                <button id="disclaimer-btn" class="disclaimer-btn" disabled onclick="_dismissDisclaimer()">
+                    请阅读并勾选同意
+                </button>
+            </div>
+        </div>
     </div>
 
     <script src="/static/script.js"></script>

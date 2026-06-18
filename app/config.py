@@ -7,7 +7,7 @@ import torch
 
 # ---- 路径 ----
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(BASE_DIR, "output", "nhanes_diabetes_2017_2020_v2.csv")
+DATA_PATH = os.path.join(BASE_DIR, "output", "nhanes_diabetes_2020_2023_v2.csv")
 MODEL_DIR = os.path.join(BASE_DIR, "output", "models")
 
 # ---- 设备 ----

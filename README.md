@@ -64,7 +64,7 @@ pip install -r requirements.txt
 python scripts/build_dataset.py
 ```
 
-输出: `output/nhanes_diabetes_2017_2020_v2.csv`
+输出: `output/nhanes_diabetes_2020_2023_v2.csv`
 
 ### 模型训练 (可选，已提供预训练权重)
 

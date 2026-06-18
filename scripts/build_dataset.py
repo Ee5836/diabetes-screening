@@ -42,7 +42,7 @@ from utils import load_and_merge_cycle, generate_diabetes_labels, engineer_featu
 # =========================== 配置 ===========================
 DATA_DIR = "./dataset"           # XPT 原始文件目录
 OUTPUT_DIR = "./output"          # 合成数据集输出目录
-OUTPUT_NAME = "nhanes_diabetes_2017_2020_v2.csv"
+OUTPUT_NAME = "nhanes_diabetes_2020_2023_v2.csv"
 
 # =========================== 合成 ===========================
 def main():
