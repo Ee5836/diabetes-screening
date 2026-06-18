@@ -145,7 +145,7 @@ def _format_result_json(prob: float, threshold: float, auc: float) -> dict:
         "advice": advice,
         "threshold_pct": round(threshold * 100, 1),
         "model_auc": round(auc, 4),
-        "data_source": "NHANES 2017-2020",
+        "data_source": "NHANES 2020-2023",
     }
 
 
@@ -215,7 +215,7 @@ def _format_result(prob: float, threshold: float, auc: float) -> str:
 <p class="result-desc">{advice}</p>
 
 <hr>
-<small>模型 AUC: {auc:.4f} &nbsp;|&nbsp; 筛查阈值: {threshold*100:.0f}% &nbsp;|&nbsp; NHANES 2017–2020</small>
+<small>模型 AUC: {auc:.4f} &nbsp;|&nbsp; 筛查阈值: {threshold*100:.0f}% &nbsp;|&nbsp; NHANES 2020–2023</small>
 <small>⚠ 本工具仅供筛查参考，不构成医疗诊断。请咨询专业医生。</small>
 
 </div>
